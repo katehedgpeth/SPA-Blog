@@ -1,0 +1,139 @@
+@mixin vendor($property, $value, $vendors: webkit moz ms o)
+  @each $vendor in $vendors
+    #{"-" + $vendor + "-" + $property}: #{$value}
+  #{$property}: #{$value}
+
+@mixin flexbox
+  @include vendor(display, flex)
+
+@mixin flex($value: 1)
+  @include vendor(flex, $value)
+
+@mixin align-items($value: center)
+  @include vendor(align-items, $value)
+
+@mixin justify-content($value: center)
+  @include vendor(justify-content, $value)
+
+
+body
+  font-family: 'Avenir', helvetica, sans-serif
+  margin: 0
+
+h1, h2, h3, h4, h5, p, div
+  margin: 0
+
+#header
+  @include flexbox
+  @include justify-content(space-between)
+  @include align-items
+
+  padding: 10px 20px
+  background: #52ABB5
+  color: #fff
+
+  a
+    color: #fff
+
+#posts
+  width: 80%
+  margin: 0 auto
+  padding-top: 50px
+
+h2
+  font-size: 1.2em
+
+
+.post.summary
+  margin-bottom: 20px
+  @include flexbox
+  @include justify-content(space-between)
+  @include align-items
+
+  .content
+    @include flex(7)
+
+  .date
+    font-size: 0.8em
+    margin-right: 20px
+    text-align: center
+    background: #F9D141
+    padding: 10px
+    width: 60px
+    color: #fff
+    border-radius: 6px
+    cursor: pointer
+
+    .day
+      font-size: 2em
+      font-weight: bold
+
+.post.detail
+  .date
+    color: #97A3A5
+  .text
+    color: #000
+a
+  color: #000
+  text-decoration: none
+
+.text
+  color: #97A3A5
+
+  a
+    color: #52ABB5
+
+#back-button
+  display: none
+
+#admin-buttons
+  @include flexbox
+  @include align-items
+  a
+    margin-left: 20px
+
+#create
+  border: 1px solid #fff
+  border-radius: 4px
+  padding: 10px
+
+.post input, .post textarea
+  display: block
+  width: 100%
+  padding: 14px
+  margin-bottom: 20px
+  border: 1px solid #ccc
+  border-radius: 4px
+
+  &:focus
+    outline: none
+
+.post input
+  font-size: 1.2em
+
+.post textarea
+  font-size: 1em
+  height: 500px
+  resize: vertical
+
+.button
+  padding: 10px
+  display: inline-block
+  border-radius: 4px
+  text-align: center
+  border: 1px solid #52ABB5
+  margin-left: 20px
+
+.confirm-popup
+  position: absolute
+  top: 200px
+  z-index: 100
+  width: 500px
+  background: #fff
+  border: 3px solid #52ABB5
+  text-align: center
+  padding: 30px
+
+  .button
+    background: #52ABB5
+    color: #fff

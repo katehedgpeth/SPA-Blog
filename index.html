@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+  <link href='css/styles.css' rel='stylesheet' type='text/css'>
+  <script src='js/jquery-2.2.2.min.js'></script>
+  <script>
+    blog = {
+      adminMode: false,
+      colors: ["#EAAE15", "#178290", "#DF5A8C", "#E24F5B", "#30A5C0", "#BFC030", "#F4CC15", "#F4840D"]
+    }
+  </script>
+  <script src='bundle.js' type='text/javascript'></script>
+  <script>
+    myBlog = new blog.Posts()
+  </script>
+</head>
+<body>
+  <div id='container'>
+    <div id='header'>
+      <h1 id='blog-title'>
+        <a href='javascript:void(0)'>This Is My Blog</a>
+      </h1>
+      <p id='admin-buttons'>
+        <a href='javascript: myBlog.createNew(); void(0)' id='create' style='display: none'>New Post</a>
+        <a href='javascript: myBlog.toggleAdminMode(); void(0) ' id='toggle-admin'>Turn on Admin Mode</a>
+      </p>
+    </div>
+    <div id='posts'>
+      <div id='load-error' style='display: none'>
+        <p>There was a problem loading posts :(    }</p>
+      </div>
+    </div>
+  </div>
+</body>

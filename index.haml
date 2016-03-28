@@ -1,0 +1,25 @@
+!!!
+%head
+  %link{ rel: 'stylesheet', href: 'css/styles.css', type: 'text/css' }
+  %script{ src: 'js/jquery-2.2.2.min.js'}
+  :javascript
+    blog = {
+      adminMode: false,
+      colors: ["#EAAE15", "#178290", "#DF5A8C", "#E24F5B", "#30A5C0", "#BFC030", "#F4CC15", "#F4840D"]
+    }
+  %script{ src: 'bundle.js', type: 'text/javascript' }
+  :javascript
+    myBlog = new blog.Posts()
+
+
+%body
+  #container
+    #header
+      %h1#blog-title
+        %a{ href: 'javascript:void(0)' } This Is My Blog
+      %p#admin-buttons
+        %a#create{ href: 'javascript: myBlog.createNew(); void(0)', style: 'display: none' } New Post
+        %a#toggle-admin{ href: 'javascript: myBlog.toggleAdminMode(); void(0) ' } Turn on Admin Mode
+    #posts
+      #load-error{ style: 'display: none' }
+        %p There was a problem loading posts :(    }
