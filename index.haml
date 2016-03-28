@@ -21,5 +21,8 @@
         %a#create{ href: 'javascript: myBlog.createNew(); void(0)', style: 'display: none' } New Post
         %a#toggle-admin{ href: 'javascript: myBlog.toggleAdminMode(); void(0) ' } Turn on Admin Mode
     #posts
-      #load-error{ style: 'display: none' }
-        %p There was a problem loading posts :(    }
+      #current-post
+      #older-posts
+        %h1 Older Posts
+        #load-error{ style: 'display: none' }
+          %p There was a problem loading posts :(    }

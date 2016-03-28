@@ -42,10 +42,6 @@ class blog.PostView extends blog.Observable
     @confirmDeleteButton.addEventListener('click', @onConfirmDeletePost)
     @cancelDeleteButton.addEventListener('click', @onCancelDeletePost)
 
-  show: ->
-    @showAdminControls() if blog.adminMode
-    document.getElementById('posts').appendChild @el
-
   hide: =>
     @el.remove()
 

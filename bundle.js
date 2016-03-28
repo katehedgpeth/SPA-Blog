@@ -199,6 +199,12 @@ blog.PostDetail = function(superClass) {
     PostDetail.prototype.goBack = function(e) {
         return this.fire("showList");
     };
+    PostDetail.prototype.show = function() {
+        if (blog.adminMode) {
+            this.showAdminControls();
+        }
+        return document.getElementById("current-post").appendChild(this.el);
+    };
     return PostDetail;
 }(blog.PostView);
 },{}],5:[function(require,module,exports){
@@ -280,7 +286,7 @@ blog.PostEdit = function(superClass) {
         return myBlog.getPosts();
     };
     PostEdit.prototype.show = function() {
-        return document.getElementById("posts").appendChild(this.el);
+        return document.getElementById("current-post").appendChild(this.el);
     };
     PostEdit.prototype.onKeyUp = function() {
         this.context.title = this.title.value;
@@ -373,6 +379,12 @@ blog.PostSummary = function(superClass) {
         this.links.ellipsis.addEventListener("click", this.showPost);
         return PostSummary.__super__.applyHandlers.apply(this, arguments);
     };
+    PostSummary.prototype.show = function() {
+        if (blog.adminMode) {
+            this.showAdminControls();
+        }
+        return document.getElementById("older-posts").appendChild(this.el);
+    };
     PostSummary.prototype.showPost = function() {
         return this.fire("showPost");
     };
@@ -450,12 +462,6 @@ blog.PostView = function(superClass) {
         this.deleteButton.addEventListener("click", this.deletePost);
         this.confirmDeleteButton.addEventListener("click", this.onConfirmDeletePost);
         return this.cancelDeleteButton.addEventListener("click", this.onCancelDeletePost);
-    };
-    PostView.prototype.show = function() {
-        if (blog.adminMode) {
-            this.showAdminControls();
-        }
-        return document.getElementById("posts").appendChild(this.el);
     };
     PostView.prototype.hide = function() {
         return this.el.remove();
@@ -545,14 +551,18 @@ blog.Posts = function(superClass) {
         return this.showList();
     };
     Posts.prototype.showList = function() {
-        var j, len, post, ref, results;
+        var i, j, len, post, ref, results;
         this.backButton.remove();
         this.hideAll();
         ref = this.posts;
         results = [];
-        for (j = 0, len = ref.length; j < len; j++) {
-            post = ref[j];
-            results.push(post.showSummary());
+        for (i = j = 0, len = ref.length; j < len; i = ++j) {
+            post = ref[i];
+            if (i === 0) {
+                results.push(post.showDetail());
+            } else {
+                results.push(post.showSummary());
+            }
         }
         return results;
     };
@@ -580,13 +590,13 @@ blog.Posts = function(superClass) {
         results = [];
         for (j = 0, len = ref.length; j < len; j++) {
             post = ref[j];
-            post.hideSummary();
             if (post.context.id === toShow.context.id) {
+                post.hideSummary();
                 this.currentPost = post;
-                this.showBackButton();
                 results.push(post.showDetail());
             } else {
-                results.push(void 0);
+                post.hideDetail();
+                results.push(post.showSummary());
             }
         }
         return results;

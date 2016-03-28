@@ -25,3 +25,7 @@ class blog.PostDetail extends blog.PostView
 
   goBack: (e) =>
     @fire 'showList'
+
+  show: ->
+    @showAdminControls() if blog.adminMode
+    document.getElementById('current-post').appendChild @el

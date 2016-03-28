@@ -32,6 +32,12 @@ h1, h2, h3, h4, h5, p, div {
   margin: 0 auto;
   padding-top: 50px; }
 
+#older-posts {
+  margin-top: 60px; }
+  #older-posts h1 {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc; }
+
 h2 {
   font-size: 1.2em; }
 

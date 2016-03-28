@@ -49,7 +49,7 @@ class blog.PostEdit extends blog.PostView
     myBlog.getPosts()
 
   show: ->
-    document.getElementById('posts').appendChild @el
+    document.getElementById('current-post').appendChild @el
 
   onKeyUp: =>
     @context.title = @title.value

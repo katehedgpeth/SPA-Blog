@@ -24,7 +24,11 @@ class blog.Posts extends blog.Observable
   showList: =>
     @backButton.remove()
     @hideAll()
-    post.showSummary() for post in @posts
+    for post, i in @posts
+      if i is 0
+        post.showDetail()
+      else
+        post.showSummary()
 
   onGetPostsError: =>
     @el.getElementById('load-error')
@@ -40,11 +44,14 @@ class blog.Posts extends blog.Observable
 
   onShowPost: (toShow) =>
     for post in @posts
-      post.hideSummary()
       if post.context.id == toShow.context.id
+        post.hideSummary()
         @currentPost = post
-        @showBackButton()
         post.showDetail()
+        # @showBackButton()
+      else
+        post.hideDetail()
+        post.showSummary()
 
   showBackButton: ->
     @backButton.addEventListener('click', @showList)

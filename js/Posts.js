@@ -52,14 +52,18 @@ blog.Posts = function(superClass) {
         return this.showList();
     };
     Posts.prototype.showList = function() {
-        var j, len, post, ref, results;
+        var i, j, len, post, ref, results;
         this.backButton.remove();
         this.hideAll();
         ref = this.posts;
         results = [];
-        for (j = 0, len = ref.length; j < len; j++) {
-            post = ref[j];
-            results.push(post.showSummary());
+        for (i = j = 0, len = ref.length; j < len; i = ++j) {
+            post = ref[i];
+            if (i === 0) {
+                results.push(post.showDetail());
+            } else {
+                results.push(post.showSummary());
+            }
         }
         return results;
     };
@@ -87,13 +91,13 @@ blog.Posts = function(superClass) {
         results = [];
         for (j = 0, len = ref.length; j < len; j++) {
             post = ref[j];
-            post.hideSummary();
             if (post.context.id === toShow.context.id) {
+                post.hideSummary();
                 this.currentPost = post;
-                this.showBackButton();
                 results.push(post.showDetail());
             } else {
-                results.push(void 0);
+                post.hideDetail();
+                results.push(post.showSummary());
             }
         }
         return results;

@@ -44,5 +44,11 @@ blog.PostDetail = function(superClass) {
     PostDetail.prototype.goBack = function(e) {
         return this.fire("showList");
     };
+    PostDetail.prototype.show = function() {
+        if (blog.adminMode) {
+            this.showAdminControls();
+        }
+        return document.getElementById("current-post").appendChild(this.el);
+    };
     return PostDetail;
 }(blog.PostView);

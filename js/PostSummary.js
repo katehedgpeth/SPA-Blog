@@ -79,6 +79,12 @@ blog.PostSummary = function(superClass) {
         this.links.ellipsis.addEventListener("click", this.showPost);
         return PostSummary.__super__.applyHandlers.apply(this, arguments);
     };
+    PostSummary.prototype.show = function() {
+        if (blog.adminMode) {
+            this.showAdminControls();
+        }
+        return document.getElementById("older-posts").appendChild(this.el);
+    };
     PostSummary.prototype.showPost = function() {
         return this.fire("showPost");
     };

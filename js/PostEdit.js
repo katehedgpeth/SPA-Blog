@@ -76,7 +76,7 @@ blog.PostEdit = function(superClass) {
         return myBlog.getPosts();
     };
     PostEdit.prototype.show = function() {
-        return document.getElementById("posts").appendChild(this.el);
+        return document.getElementById("current-post").appendChild(this.el);
     };
     PostEdit.prototype.onKeyUp = function() {
         this.context.title = this.title.value;

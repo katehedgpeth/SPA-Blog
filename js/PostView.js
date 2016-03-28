@@ -66,12 +66,6 @@ blog.PostView = function(superClass) {
         this.confirmDeleteButton.addEventListener("click", this.onConfirmDeletePost);
         return this.cancelDeleteButton.addEventListener("click", this.onCancelDeletePost);
     };
-    PostView.prototype.show = function() {
-        if (blog.adminMode) {
-            this.showAdminControls();
-        }
-        return document.getElementById("posts").appendChild(this.el);
-    };
     PostView.prototype.hide = function() {
         return this.el.remove();
     };

@@ -66,6 +66,10 @@ class blog.PostSummary extends blog.PostView
     @links.ellipsis.addEventListener 'click', @showPost
     super
 
+  show: ->
+    @showAdminControls() if blog.adminMode
+    document.getElementById('older-posts').appendChild @el
+
   showPost: =>
     @fire 'showPost'
 
