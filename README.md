@@ -15,11 +15,11 @@ Test Server
 The test server generates an intial set of blog posts to be returned to the site. (They're posts from The Onion, one of my go-to sources for dummy content.)
 
 To run the test server:
-1. Navigate to the /api folder in a terminal window
-2. Run `bundle install`
-3. When the bundle is finished installing, run `rake db:migrate` to set up the database
-4. Once the migration is finished, run `rails server` to start the server
-5. If at any time you want to reset the database, run `rake db:reset`
+  1. Navigate to the /api folder in a terminal window
+  2. Run `bundle install`
+  3. When the bundle is finished installing, run `rake db:migrate` to set up the database
+  4. Once the migration is finished, run `rails server` to start the server
+  5. If at any time you want to reset the database, run `rake db:reset`
 
 If you don't have rails installed on your computer, you will need to get that first, obviously.
 
